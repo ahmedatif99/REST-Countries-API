@@ -14,7 +14,7 @@ const Country = ({ countries }) => {
   const { name } = useParams();
 
   const fetchCountryData = async () => {
-    const res = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
+    const res = await fetch(`https://restcountries.com/v2/name/${name}`);
     const country = await res.json();
     setCountry(country[0]);
     console.log(country[0]);

@@ -13,7 +13,7 @@ const Countries = ({ countriesArray, searchInput, selectedRegion }) => {
   const [filteredCountries, setFilteredCountries] = useState([]);
 
   const fetchCountriesData = async () => {
-    const res = await fetch(`https://restcountries.eu/rest/v2/all`);
+    const res = await fetch(`https://restcountries.com/v2/all`);
     const countries = await res.json();
 
     setCountries(countries);
@@ -28,8 +28,18 @@ const Countries = ({ countriesArray, searchInput, selectedRegion }) => {
     console.log(filteredCountries);
   };
 
+  //Fetchin all countries data
   useEffect(() => {
     fetchCountriesData();
+  }, [])
+
+  //Fetchin countries data whene select region
+  useEffect(() => {
+    fetchCountriesData();
+  }, [selectedRegion])
+
+  //Fetchin countries data whene fill Search input
+  useEffect(() => {
     setFilteredCountries(filterByName(searchInput, countries));
   }, [searchInput, selectedRegion]);
 
